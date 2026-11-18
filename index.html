@@ -44,8 +44,8 @@
       border-bottom: 1px solid var(--border);
       padding: calc(12px + var(--safe-top)) 14px 10px;
     }
-    h1 { margin: 0; font-size: 1.06rem; font-weight: 750; letter-spacing: -0.01em; }
-    .subtitle { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
+    h1 { margin: 0; font-size: 1.05rem; font-weight: 750; letter-spacing: -0.01em; }
+    .subtitle { font-size: 0.71rem; color: var(--muted); margin-top: 2px; line-height: 1.3; }
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -58,8 +58,8 @@
       border-radius: 10px;
       padding: 7px 9px;
     }
-    .stat-label { font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
-    .stat-val { font-size: 0.94rem; font-weight: 700; margin-top: 2px; font-variant-numeric: tabular-nums; }
+    .stat-label { font-size: 0.63rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
+    .stat-val { font-size: 0.93rem; font-weight: 700; margin-top: 2px; font-variant-numeric: tabular-nums; }
     .stat-val.green { color: var(--green); }
     .stat-val.accent { color: var(--accent); }
     .progress-wrap { margin-top: 9px; display: flex; align-items: center; gap: 10px; }
@@ -123,8 +123,8 @@
     .phase-banner.step3 { border-left-color: var(--accent); }
     .phase-banner.step4 { border-left-color: var(--green); }
     .phase-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
-    .phase-title { font-size: 0.9rem; font-weight: 750; }
-    .phase-sub { font-size: 0.74rem; color: var(--muted); margin-top: 4px; line-height: 1.38; }
+    .phase-title { font-size: 0.89rem; font-weight: 750; }
+    .phase-sub { font-size: 0.73rem; color: var(--muted); margin-top: 4px; line-height: 1.38; }
     .phase-total { font-size: 0.8rem; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; white-space: nowrap; }
     .cat-header {
       margin: 12px 2px 6px;
@@ -183,28 +183,46 @@
     .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 7px; align-items: center; }
     .pill {
       font-size: 0.69rem;
-      padding: 3px 8px;
+      padding: 4px 8px;
       border-radius: 6px;
       background: #1b2434;
       border: 1px solid #2a374f;
       color: #cbd5e1;
       font-weight: 600;
       text-decoration: none;
+      cursor: default;
     }
     .store-pill.gng { border-color: rgba(167, 139, 250, 0.4); color: #ddd6fe; }
     .store-pill.ds { border-color: rgba(56, 189, 248, 0.4); color: #bae6fd; }
     .store-pill.bun { border-color: rgba(34, 197, 94, 0.4); color: #bbf7d0; }
     .sku-pill { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; cursor: pointer; }
-    .link-pill { background: rgba(56, 189, 248, 0.14); border-color: rgba(56, 189, 248, 0.45); color: #7dd3fc; font-weight: 700; }
+    .link-pill {
+      background: rgba(56, 189, 248, 0.14);
+      border-color: rgba(56, 189, 248, 0.45);
+      color: #7dd3fc;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .link-pill.saved {
+      background: rgba(34, 197, 94, 0.16);
+      border-color: rgba(34, 197, 94, 0.5);
+      color: #86efac;
+    }
+    .save-url-pill {
+      background: rgba(148, 163, 184, 0.1);
+      border-color: #334155;
+      color: var(--muted);
+      cursor: pointer;
+    }
     .note-txt { font-size: 0.74rem; color: var(--muted); margin-top: 6px; line-height: 1.35; }
-    .footer-actions { margin: 22px 0 12px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .footer-actions { margin: 22px 0 12px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
     .btn-ghost {
       background: var(--card);
       border: 1px solid var(--border);
       color: var(--muted);
-      padding: 9px 14px;
+      padding: 9px 13px;
       border-radius: 10px;
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       font-weight: 650;
       cursor: pointer;
     }
@@ -235,7 +253,7 @@
   <header>
     <div>
       <h1>3-Car Pro Detailing Setup (3 Stores)</h1>
-      <div class="subtitle">Tap <strong>Open Product ↗</strong> to view at shop • Tap SKU to copy • Tap $ to edit</div>
+      <div class="subtitle"><strong>Find Product ↗</strong> jumps straight to the store listing • Tap <strong>+ Paste Link</strong> to lock direct URLs • Tap $ to edit</div>
     </div>
 
     <div class="stats-grid">
@@ -276,7 +294,9 @@
 
   <div class="footer-actions">
     <button class="btn-ghost" id="exportBtn">Copy Remaining List</button>
-    <button class="btn-ghost btn-danger" id="resetBtn">Reset All Progress</button>
+    <button class="btn-ghost" id="backupBtn">Backup Data</button>
+    <button class="btn-ghost" id="restoreBtn">Restore Data</button>
+    <button class="btn-ghost btn-danger" id="resetBtn">Reset All</button>
   </div>
 
   <div class="toast" id="toast"></div>
@@ -311,21 +331,21 @@
         id: "prep-1", step: 1, store: "Detailing Shed (Call)", storeCls: "ds", category: "Pre-Order Checks",
         brand: "Detailing Shed", name: "Confirm Kränzle K1152TST + MTM Bundle & Numatic George Stock",
         model: "Caringbah Warehouse", sku: "(02) 9527 1850", qty: 1, unitPrice: 0, isEst: false, isAction: true,
-        q: "https://detailingshed.com.au",
+        directDefault: "https://detailingshed.com.au",
         note: "Confirm MTM bundle assembly wait time & whether George GVE370 is ready same-day."
       },
       {
         id: "prep-2", step: 1, store: "Detailing Shed (Online)", storeCls: "ds", category: "Pre-Order Checks",
         brand: "Detailing Shed", name: "Place Click & Collect Order Online (All 48 Order-3 Items)",
         model: "Select Caringbah Pickup", sku: "detailingshed.com.au", qty: 1, unitPrice: 0, isEst: false, isAction: true,
-        q: "https://detailingshed.com.au",
+        directDefault: "https://detailingshed.com.au",
         note: "You CANNOT walk in and browse at Caringbah—order online first and wait for the pickup email."
       },
       {
         id: "prep-3", step: 1, store: "GNG Sales (Call)", storeCls: "gng", category: "Pre-Order Checks",
         brand: "GNG Sales", name: "Confirm RUPES LHR15V & LHR75E Stock & Bare-Tool Pricing",
         model: "Seven Hills Distributor", sku: "(02) 9680 4464", qty: 1, unitPrice: 0, isEst: false, isAction: true,
-        q: "https://www.gngsales.com.au",
+        directDefault: "https://www.gngsales.com.au",
         note: "Ask for LHR15V/STD + LHR75E bare tool. Confirm Mon–Fri pickup hours."
       },
 
@@ -334,14 +354,14 @@
         id: "gng-1", step: 2, store: "GNG Sales (Seven Hills)", storeCls: "gng", category: "Polishers",
         brand: "RUPES", name: "BigFoot LHR15 Mark V 15mm Random Orbital Polisher",
         model: "LHR15V/STD Bare Tool (5\" / 125mm)", sku: "LHR15V/STD", qty: 1, unitPrice: 1141.00, isEst: false,
-        q: "LHR15V",
+        lookup: "site:gngsales.com.au RUPES LHR15 Mark V",
         note: "Primary 15mm workhorse ($1,141 bare tool at GNG; full LUX kit is $1,509)."
       },
       {
         id: "gng-2", step: 2, store: "GNG Sales (Seven Hills)", storeCls: "gng", category: "Polishers",
         brand: "RUPES", name: "BigFoot LHR75E Mini 12mm Random Orbital Polisher",
         model: "LHR75E Bare Tool Only (3\" / 75mm)", sku: "LHR75E", qty: 1, unitPrice: 780.00, isEst: true,
-        q: "LHR75E",
+        lookup: "site:gngsales.com.au RUPES LHR75E",
         note: "3-inch polisher for bumpers & pillars. Full LUX kit is $1,057.19; ask for tool-only."
       },
 
@@ -350,21 +370,21 @@
         id: "ds-1", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Pressure Washing & Drying",
         brand: "Kränzle / MTM Hydro", name: "Kränzle K1152TST (QC) + Full MTM Hydro Bundle",
         model: "10 L/min Brass Pump + PF22 + Short Gun", sku: "KR-K1152MTMBUND", qty: 1, unitPrice: 3015.95, isEst: false,
-        q: "KR-K1152MTMBUND",
+        lookup: "site:detailingshed.com.au Kranzle K1152TST MTM bundle",
         note: "Pre-assembled with stainless quick-connects so everything clicks straight together."
       },
       {
         id: "ds-2", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Pressure Washing & Drying",
         brand: "The Detail Guardz", name: "Hose Guide Tyre Rollers (2-Pack × 2 = 4 Guides)",
         model: "Original 2-Pack", sku: "DG-HOSEGUIDE-2PK", qty: 2, unitPrice: 16.10, isEst: false,
-        q: "Detail Guardz Hose Guide",
+        lookup: "site:detailingshed.com.au Detail Guardz Hose Guide",
         note: "1 under each tyre stops the Kränzle hose jamming while circling 3 cars."
       },
       {
         id: "ds-3", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Pressure Washing & Drying",
         brand: "BigBoi", name: "BlowR Pro MKII 4-Stage Twin Motor Touchless Car Dryer",
         model: "Twin 1600W Filtered Warm Air", sku: "BLOWRPRO MKII", qty: 1, unitPrice: 679.00, isEst: false,
-        q: "BLOWRPRO MKII",
+        lookup: "site:detailingshed.com.au BigBoi BlowR Pro MKII",
         note: "Blasts water out of badges, mirrors, grilles & lug nuts with zero towel contact."
       },
 
@@ -373,56 +393,56 @@
         id: "ds-4", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Compounds, Pads & Inspection",
         brand: "SONAX", name: "PROFILINE Ultimate Cut 6+ Heavy Cutting Compound (1L)",
         model: "Select 1L Size (Silicone-Free)", sku: "SON-02393000", qty: 1, unitPrice: 69.99, isEst: true,
-        q: "Sonax Ultimate Cut 6+",
+        lookup: "site:detailingshed.com.au Sonax Ultimate Cut 6+",
         note: "Water-based, low-dust heavy cutting compound. (250mL starts from $39.99)."
       },
       {
         id: "ds-5", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Compounds, Pads & Inspection",
         brand: "Koch-Chemie", name: "Micro Cut M3.02 Finishing Polish (1L)",
         model: "Select 1L Size (Silicone-Free)", sku: "KC-M302-1L", qty: 1, unitPrice: 64.95, isEst: true,
-        q: "Koch-Chemie M3.02",
+        lookup: "site:detailingshed.com.au Koch Chemie Micro Cut M3.02",
         note: "Refines haze/swirls for deep gloss before ceramic coating. (250mL starts from $31.45)."
       },
       {
         id: "ds-6", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Compounds, Pads & Inspection",
         brand: "Buff and Shine", name: "Uro-Fiber Microfiber Cut, Polish & Finish Pads — 5\" (×6)",
         model: "Select 5 Inch (125mm Plate)", sku: "BS-UROFIBER-5", qty: 6, unitPrice: 24.95, isEst: false,
-        q: "Buff and Shine Uro-Fiber",
+        lookup: "site:detailingshed.com.au Buff and Shine Uro-Fiber",
         note: "Swap to a clean pad every 1–2 panels so pads stay cool and cut evenly."
       },
       {
         id: "ds-7", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Compounds, Pads & Inspection",
         brand: "Buff and Shine", name: "Uro-Tec Yellow Polishing/Finishing Foam Pads — 5\" (×6)",
         model: "Select 5 Inch (125mm Plate)", sku: "BS-UROTEC-YLW-5", qty: 6, unitPrice: 22.95, isEst: false,
-        q: "Buff and Shine Uro-Tec Yellow",
+        lookup: "site:detailingshed.com.au Buff and Shine Uro-Tec Yellow",
         note: "Pair with M3.02 for final gloss pass or single-stage polishing."
       },
       {
         id: "ds-8", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Compounds, Pads & Inspection",
         brand: "Buff and Shine", name: "Uro-Fiber Microfiber Cut, Polish & Finish Pads — 3\" (×4)",
         model: "Select 3 Inch (LHR75E Mini)", sku: "BS-UROFIBER-3", qty: 4, unitPrice: 19.95, isEst: true,
-        q: "Buff and Shine Uro-Fiber",
+        lookup: "site:detailingshed.com.au Buff and Shine Uro-Fiber 3",
         note: "3-inch cutting pads for RUPES LHR75E on bumpers & pillars."
       },
       {
         id: "ds-9", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Compounds, Pads & Inspection",
         brand: "Buff and Shine", name: "Uro-Tec Yellow Polishing Foam Pads — 3\" (×4)",
         model: "Select 3 Inch (LHR75E Mini)", sku: "BS-UROTEC-YLW-3", qty: 4, unitPrice: 18.95, isEst: true,
-        q: "Buff and Shine Uro-Tec Yellow",
+        lookup: "site:detailingshed.com.au Buff and Shine Uro-Tec Yellow 3",
         note: "3-inch finishing pads for RUPES LHR75E."
       },
       {
         id: "ds-10", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Compounds, Pads & Inspection",
         brand: "SCANGRIP", name: "Multimatch R High-CRI LED Inspection Light",
         model: "All Daylight CRI+ Work Light", sku: "SG-MMR", qty: 1, unitPrice: 219.90, isEst: false,
-        q: "Scangrip Multimatch R",
+        lookup: "site:detailingshed.com.au Scangrip Multimatch R",
         note: "Garage overhead lights hide swirls; Scangrip reveals true defects & coating high spots."
       },
       {
         id: "ds-11", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Compounds, Pads & Inspection",
         brand: "Maxshine", name: "Automotive Masking Tape (18mm + 36mm Rolls)",
         model: "18mm × 50m + 36mm × 50m", sku: "MS-MT18 / MS-MT36", qty: 2, unitPrice: 6.50, isEst: true,
-        q: "Maxshine Masking Tape",
+        lookup: "site:detailingshed.com.au Maxshine Masking Tape",
         note: "Protects unpainted black trim, badges & window rubbers from polish staining. (From $4.60/roll)."
       },
 
@@ -431,63 +451,63 @@
         id: "ds-12", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Buckets, Sprayers & Brushes",
         brand: "Maxshine / Detail Guardz", name: "Two-Bucket 20L Kit + Dirt Locks",
         model: "2× 20L Buckets + 2× Dirt Locks", sku: "MS-20L-KIT", qty: 1, unitPrice: 115.00, isEst: true,
-        q: "Bucket Dirt Lock",
+        lookup: "site:detailingshed.com.au Maxshine Two Bucket",
         note: "Wash & Rinse buckets for paintwork."
       },
       {
         id: "ds-13", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Buckets, Sprayers & Brushes",
         brand: "Maxshine / Detail Guardz", name: "Dedicated Wheel Bucket (20L) + Detail Guardz Dirt Lock",
         model: "1× Colour-Coded 20L + 1× Dirt Lock", sku: "DG-DIRTLOCK + 20L", qty: 1, unitPrice: 62.00, isEst: true,
-        q: "Detail Guardz Dirt Lock",
+        lookup: "site:detailingshed.com.au Detail Guardz Dirt Lock",
         note: "Keep strictly for wheels/tyres so brake grit never touches paint. (Dirt Lock $33.95)."
       },
       {
         id: "ds-14", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Buckets, Sprayers & Brushes",
         brand: "The Rag Company", name: "The Ultra Wash Mitt with Cuff (Korean Microfiber) ×2",
         model: "70/30 Korean Microfiber", sku: "TRC-ULTRAWASHMITT", qty: 2, unitPrice: 24.95, isEst: false,
-        q: "Ultra Wash Mitt",
+        lookup: "site:detailingshed.com.au Ultra Wash Mitt",
         note: "1 mitt for top panels/bonnet, 1 mitt for lower panels."
       },
       {
         id: "ds-15", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Buckets, Sprayers & Brushes",
         brand: "EZ Detail", name: "EZ Detail Big Wheel Barrel Brush (45cm)",
         model: "18-Inch Soft Nylon", sku: "Big18Inch45cm", qty: 1, unitPrice: 59.90, isEst: false,
-        q: "EZ Detail Big",
+        lookup: "site:detailingshed.com.au EZ Detail Big Wheel Brush",
         note: "Reaches deep into inner wheel barrels & around calipers without scratching."
       },
       {
         id: "ds-16", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Buckets, Sprayers & Brushes",
         brand: "Detail Factory", name: "XL Tyre Scrubbing Brush",
         model: "ProGrip Tyre Brush", sku: "DF-XLTIRE", qty: 1, unitPrice: 34.95, isEst: false,
-        q: "Detail Factory Tire",
+        lookup: "site:detailingshed.com.au Detail Factory Tire Brush",
         note: "Stiff bristles scrub brown oxidation out of tyre sidewalls."
       },
       {
         id: "ds-17", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Buckets, Sprayers & Brushes",
         brand: "Detail Factory", name: "Ultra-Soft Detailing Brush Set",
         model: "Synthetic Ultra-Soft (Paint/Interior Safe)", sku: "DF-ULTRASOFT-SET", qty: 1, unitPrice: 54.95, isEst: true,
-        q: "Detail Factory Ultra Soft",
+        lookup: "site:detailingshed.com.au Detail Factory Ultra Soft Brush Set",
         note: "Scratch-free for piano black trim, infotainment screens, badges & wheel lug nuts."
       },
       {
         id: "ds-18", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Buckets, Sprayers & Brushes",
         brand: "P&S / iK Sprayers", name: "P&S Brake Buster + iK Foam Pro 2 Wheel Foaming Kit",
         model: "Foaming Pump Sprayer + Bottle", sku: "PS-IKFOAM-KIT", qty: 1, unitPrice: 125.90, isEst: false,
-        q: "Brake Buster iK Foam Pro 2",
+        lookup: "site:detailingshed.com.au Brake Buster IK Foam Pro 2",
         note: "Thick clinging wheel/tyre foam. Dilute Brake Buster 1:5 inside the iK Foam Pro 2."
       },
       {
         id: "ds-19", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Buckets, Sprayers & Brushes",
         brand: "iK Sprayers", name: "iK Multi Pro 2 Acid-Resistant Pump Sprayer",
         model: "1.5L Usable Tank (81671)", sku: "IK-81671", qty: 1, unitPrice: 62.95, isEst: false,
-        q: "iK Multi Pro 2",
+        lookup: "site:detailingshed.com.au iK Multi Pro 2",
         note: "For pre-wash spray on lower panels, Surfex HD on arches/engine bays, or tar remover."
       },
       {
         id: "ds-20", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Buckets, Sprayers & Brushes",
         brand: "iK Sprayers", name: "iK Multi TR 1 Trigger Sprayers (1L) ×4",
         model: "360° Chemical-Resistant 1L", sku: "IK-TR1", qty: 4, unitPrice: 27.95, isEst: false,
-        q: "iK Multi TR 1",
+        lookup: "site:detailingshed.com.au iK Multi TR 1",
         note: "Label for Pol Star (1:10), Surfex HD (1:10), ONR Clay Lube (1:256), & Panel Prep."
       },
 
@@ -496,49 +516,49 @@
         id: "ds-21", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Wash, Wheel & Decon Chemicals",
         brand: "Bilt Hamber", name: "Touch-Less V2 Snow Foam Pre-Wash (5L)",
         model: "5 Litre Concentrate (Biodegradable)", sku: "BH-TOUCHLESS-5L", qty: 1, unitPrice: 114.90, isEst: false,
-        q: "Bilt Hamber Touch-Less",
+        lookup: "site:detailingshed.com.au Bilt Hamber Touch-Less",
         note: "Industry gold-standard pre-wash. Strips 80%+ traffic film touchlessly before mitt hits paint."
       },
       {
         id: "ds-22", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Wash, Wheel & Decon Chemicals",
         brand: "P&S Detail Products", name: "Pearl Auto Shampoo (3.8L / 1 Gallon)",
         model: "pH-Neutral Concentrate (3.8L)", sku: "PS-PEARL-GAL", qty: 1, unitPrice: 74.95, isEst: true,
-        q: "P&S Pearl",
+        lookup: "site:detailingshed.com.au P&S Pearl Auto Shampoo",
         note: "High-lubrication, zero glossers, safe on ceramic coatings. (Smaller bottle from $29.95)."
       },
       {
         id: "ds-23", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Wash, Wheel & Decon Chemicals",
         brand: "P&S Detail Products", name: "Brake Buster Non-Acid Wheel Cleaner (3.8L Refill)",
         model: "3.8L Gallon Concentrate", sku: "PS-BB-GAL", qty: 1, unitPrice: 69.95, isEst: true,
-        q: "P&S Brake Buster",
+        lookup: "site:detailingshed.com.au P&S Brake Buster",
         note: "Bulk refill for your iK Foam Pro 2 across 3 cars—lasts months diluted 1:5."
       },
       {
         id: "ds-24", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Wash, Wheel & Decon Chemicals",
         brand: "Bilt Hamber", name: "Korrosol Fallout & Iron Remover (1L)",
         model: "1 Litre (pH-Neutral)", sku: "BH-KORROSOL-1L", qty: 1, unitPrice: 54.90, isEst: false,
-        q: "Bilt Hamber Korrosol",
+        lookup: "site:detailingshed.com.au Bilt Hamber Korrosol",
         note: "Dissolves embedded brake rail dust & iron particles on paint + heavily soiled wheels."
       },
       {
         id: "ds-25", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Wash, Wheel & Decon Chemicals",
         brand: "Gtechniq", name: "W7 Tar and Glue Remover (500mL)",
         model: "500mL Solvent Decon", sku: "GT-W7-500", qty: 1, unitPrice: 19.80, isEst: false,
-        q: "Gtechniq W7",
+        lookup: "site:detailingshed.com.au Gtechniq W7",
         note: "Melts road tar, tree sap & rubber marks before claying."
       },
       {
         id: "ds-26", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Wash, Wheel & Decon Chemicals",
         brand: "DIY Detail", name: "Quad Fold Fine Grade Clay Towel V2",
         model: "Synthetic Perforated Clay Towel", sku: "DIYFGCT", qty: 1, unitPrice: 59.95, isEst: false,
-        q: "DIYFGCT",
+        lookup: "site:detailingshed.com.au DIY Detail Fine Grade Clay Towel",
         note: "Fastest paint decon across 3 cars; rinses clean if dropped (unlike clay bars)."
       },
       {
         id: "ds-27", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Wash, Wheel & Decon Chemicals",
         brand: "Optimum", name: "Optimum No Rinse Wash & Shine ONR V6 (946mL / 32oz)",
         model: "ONR V6 946mL Concentrate", sku: "OPT-ONRV6-32", qty: 1, unitPrice: 49.95, isEst: true,
-        q: "Optimum No Rinse",
+        lookup: "site:detailingshed.com.au Optimum No Rinse",
         note: "Dilute 1:256 for endless clay lube & fast indoor rinseless maintenance washes."
       },
 
@@ -547,42 +567,42 @@
         id: "ds-28", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Microfibre & Towel Care",
         brand: "The Rag Company", name: "The Gauntlet Microfiber Drying Towel (Large 75×90cm) ×2",
         model: "70/30 Hybrid Twist-Loop", sku: "TRC-GAUNTLET-LG", qty: 2, unitPrice: 39.95, isEst: true,
-        q: "Rag Company Gauntlet",
+        lookup: "site:detailingshed.com.au Rag Company Gauntlet",
         note: "Finish-wipe after the BigBoi blower. (Small sizes start from $13.95)."
       },
       {
         id: "ds-29", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Microfibre & Towel Care",
         brand: "The Rag Company", name: "Eagle Edgeless 500 (40×40cm) ×8",
         model: "500gsm 70/30 Korean Plush", sku: "10B", qty: 8, unitPrice: 10.95, isEst: false,
-        q: "Eagle Edgeless 500",
+        lookup: "site:detailingshed.com.au Eagle Edgeless 500",
         note: "Final ceramic coating buffing, soft black paint & spray sealants."
       },
       {
         id: "ds-30", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Microfibre & Towel Care",
         brand: "The Rag Company", name: "Edgeless 365 (40×40cm) ×10",
         model: "365gsm 70/30 Dual-Pile", sku: "12A", qty: 10, unitPrice: 4.45, isEst: false,
-        q: "Edgeless 365",
+        lookup: "site:detailingshed.com.au Edgeless 365",
         note: "Compound/polish removal, panel wipe, interior plastics & leather."
       },
       {
         id: "ds-31", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Microfibre & Towel Care",
         brand: "The Rag Company", name: "Edgeless 300gsm 70/30 Utility Towels ×12",
         model: "300gsm Utility Towels", sku: "TRC-E300", qty: 12, unitPrice: 4.00, isEst: true,
-        q: "Edgeless 300",
+        lookup: "site:detailingshed.com.au Edgeless 300",
         note: "Keep strictly for dirty work: door jambs, wheel barrels, arches, exhausts & engine bays."
       },
       {
         id: "ds-32", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Microfibre & Towel Care",
         brand: "The Rag Company", name: "Dry Me A River Korean Waffle Glass Towel ×3",
         model: "Jr. Waffle Weave", sku: "14A", qty: 3, unitPrice: 12.95, isEst: false,
-        q: "Dry Me A River",
+        lookup: "site:detailingshed.com.au Dry Me A River",
         note: "Use 2 per glass session (1 damp wipe, 1 dry buff) + 1 spare."
       },
       {
         id: "ds-33", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Microfibre & Towel Care",
         brand: "P&S Detail Products", name: "Rags To Riches Microfiber Detergent (3.8L / 1 Gallon)",
         model: "3.8L Concentrate", sku: "PS-R2R-GAL", qty: 1, unitPrice: 89.95, isEst: true,
-        q: "Rags to Riches",
+        lookup: "site:detailingshed.com.au P&S Rags to Riches",
         note: "Wash towels cold/warm with this—never fabric softener—so coatings don't clog fibres."
       },
 
@@ -591,42 +611,42 @@
         id: "ds-34", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Ceramic Protection, Glass & Tyres",
         brand: "Gtechniq", name: "Crystal Serum Light CSL + EXOv5 5-Year Bundle (50mL) ×2",
         model: "50mL CSL + 50mL EXOv5 (×2 Sets)", sku: "GT-CSLEXO50v5", qty: 2, unitPrice: 295.00, isEst: true,
-        q: "Crystal Serum Light EXOv5",
+        lookup: "site:detailingshed.com.au Gtechniq Crystal Serum Light EXOv5",
         note: "2× 50mL bundles cover 3 full cars + trims/pillars. (30mL bundle is $214.50)."
       },
       {
         id: "ds-35", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Ceramic Protection, Glass & Tyres",
         brand: "Gtechniq", name: "PW Panel Wipe Coating Prep V2 (500mL ×2)",
         model: "500mL Solvent Panel Prep", sku: "GT-PW-500", qty: 2, unitPrice: 24.95, isEst: true,
-        q: "Gtechniq Panel Wipe",
+        lookup: "site:detailingshed.com.au Gtechniq Panel Wipe",
         note: "Strips polishing oils cleanly before applying CSL. (250mL starts from $18.10)."
       },
       {
         id: "ds-36", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Ceramic Protection, Glass & Tyres",
         brand: "Labocosmetica", name: "BENEFICIA Hydro Sealant Wet Coat (1L)",
         model: "Spray-On / Rinse-Off Sealant", sku: "LAB-BENEFICIA", qty: 1, unitPrice: 55.90, isEst: false,
-        q: "Labocosmetica BENEFICIA",
+        lookup: "site:detailingshed.com.au Labocosmetica BENEFICIA",
         note: "Spray onto wet wheels/paint every couple months & blast off with the Kränzle."
       },
       {
         id: "ds-37", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Ceramic Protection, Glass & Tyres",
         brand: "Gtechniq", name: "G1 ClearVision Smart Glass Coating + G2 (15mL ×2)",
         model: "2-Year Rain Repellent (2× 15mL)", sku: "GT-G1-15", qty: 2, unitPrice: 27.50, isEst: false,
-        q: "Gtechniq G1 ClearVision",
+        lookup: "site:detailingshed.com.au Gtechniq G1 ClearVision",
         note: "2× 15mL kits cover windscreens + side glass across 3 cars (or grab 100mL bottle)."
       },
       {
         id: "ds-38", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Ceramic Protection, Glass & Tyres",
         brand: "ARMOUR Detail Supply", name: "Tire+ SiO2 Tyre Dressing Kit (473mL + Applicator)",
         model: "473mL + Foam Tyre Applicator", sku: "ADS-TIREKIT", qty: 1, unitPrice: 42.65, isEst: false,
-        q: "Armour Tire+",
+        lookup: "site:detailingshed.com.au Armour Tire+",
         note: "Rich satin finish, zero sling. Add 1 extra Gtechniq AP2 sponge ($3) for trims."
       },
       {
         id: "ds-39", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Ceramic Protection, Glass & Tyres",
         brand: "Gtechniq", name: "AP2 Dual-Density Foam Applicator Pad (Extra)",
         model: "Spare Trim/Tyre Sponge", sku: "GT-AP2", qty: 1, unitPrice: 3.00, isEst: false,
-        q: "Gtechniq AP2",
+        lookup: "site:detailingshed.com.au Gtechniq AP2",
         note: "Keep separate from your tyre applicator."
       },
 
@@ -635,63 +655,63 @@
         id: "ds-40", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Interior, Glass & Engine Bay",
         brand: "Numatic", name: "George GVE370 Commercial 4-in-1 Wet/Dry & Carpet Extractor",
         model: "1060W UK Motor + Full Tool Kit", sku: "GVE370", qty: 1, unitPrice: 980.90, isEst: false,
-        q: "GVE370",
+        lookup: "site:detailingshed.com.au Numatic George GVE370",
         note: "Bombproof UK dry vacuum + seat/carpet wet extractor in one machine."
       },
       {
         id: "ds-41", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Interior, Glass & Engine Bay",
         brand: "Numatic", name: "HepaFlo NVM-2BH Dust Bags (10-Pack)",
         model: "Genuine Triple-Layer Bags", sku: "NU-604016-Bags", qty: 1, unitPrice: 49.50, isEst: false,
-        q: "Numatic HepaFlo Bags",
+        lookup: "site:detailingshed.com.au Numatic HepaFlo",
         note: "Sold separately from the George—essential for dry vacuuming."
       },
       {
         id: "ds-42", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Interior, Glass & Engine Bay",
         brand: "Koch-Chemie", name: "Pol Star (PO) Textile, Leather & Alcantara Cleaner (1L)",
         model: "1L Concentrate (Dilute 1:10)", sku: "KC-PO-1L", qty: 1, unitPrice: 34.95, isEst: true,
-        q: "Koch-Chemie Pol Star",
+        lookup: "site:detailingshed.com.au Koch Chemie Pol Star",
         note: "Safely deep-cleans leather, Alcantara, plastics & seats with a dry OEM finish."
       },
       {
         id: "ds-43", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Interior, Glass & Engine Bay",
         brand: "Bilt Hamber", name: "Surfex HD Heavy APC / Degreaser (5L)",
         model: "5L Concentrate (Dilute 1:10–1:30)", sku: "BH-SURFEX-5L", qty: 1, unitPrice: 79.90, isEst: true,
-        q: "Bilt Hamber Surfex HD",
+        lookup: "site:detailingshed.com.au Bilt Hamber Surfex HD",
         note: "For engine bays, wheel arches, rubber floor mats & door jambs. (1L starts from $44.90)."
       },
       {
         id: "ds-44", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Interior, Glass & Engine Bay",
         brand: "Gtechniq", name: "C6 Matte Dash AB Interior Trim Protector",
         model: "100mL / 500mL Matte UV", sku: "GT-C6", qty: 1, unitPrice: 17.60, isEst: false,
-        q: "Gtechniq C6 Matte Dash",
+        lookup: "site:detailingshed.com.au Gtechniq C6 Matte Dash",
         note: "Factory-matte, anti-static UV protection with zero greasy glare."
       },
       {
         id: "ds-45", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Interior, Glass & Engine Bay",
         brand: "Maxshine", name: "Interior Scrubbing Sponge (Dual Bristle/Microfibre)",
         model: "Scrub Ninja Style Pad", sku: "MS-SCRUBSPONGE", qty: 2, unitPrice: 7.95, isEst: true,
-        q: "Interior Scrub Sponge",
+        lookup: "site:detailingshed.com.au Interior Scrubbing Sponge",
         note: "Lifts ingrained skin oils from steering wheels, door cards & leather grain."
       },
       {
         id: "ds-46", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Interior, Glass & Engine Bay",
         brand: "Bilt Hamber", name: "Trace-Less Super Wetting Glass Cleaner (1L)",
         model: "1 Litre", sku: "BH-TRACELESS-1L", qty: 1, unitPrice: 49.50, isEst: false,
-        q: "Bilt Hamber Trace-Less",
+        lookup: "site:detailingshed.com.au Bilt Hamber Trace-Less",
         note: "Leaves zero streaks on tinted windows & glossy infotainment screens."
       },
       {
         id: "ds-47", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Interior, Glass & Engine Bay",
         brand: "Koch-Chemie", name: "Motorplast (MP) Engine Bay Conserver (500mL)",
         model: "500mL Wet-Apply Dressing", sku: "KC-MP-500", qty: 1, unitPrice: 24.26, isEst: false,
-        q: "Koch-Chemie Motorplast",
+        lookup: "site:detailingshed.com.au Koch Chemie Motorplast",
         note: "Rinse engine, spray MP on wet hoses/plastics, shut bonnet—dries factory-new in 20 mins."
       },
       {
         id: "ds-48", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "PPE & Safety",
         brand: "Bastion", name: "Nitrile UltraTough Black Powder-Free Gloves (100 Box)",
         model: "Box of 100 (Pick M / L / XL)", sku: "BNG7874", qty: 1, unitPrice: 39.95, isEst: false,
-        q: "Bastion Nitrile Gloves",
+        lookup: "site:detailingshed.com.au Bastion Nitrile Gloves",
         note: "Essential when handling CSL/EXOv5, iron remover & Surfex HD."
       },
 
@@ -700,33 +720,33 @@
         id: "bun-1", step: 4, store: "Bunnings", storeCls: "bun", category: "PPE, Storage & Electrical",
         brand: "3M", name: "Multi-Purpose Quick Latch Respirator w/ Cool Flow (A1/P2)",
         model: "65023QLHA1C-PS (Organic Vapour)", sku: "I/N: 0054515", qty: 1, unitPrice: 82.31, isEst: false,
-        q: "0054515",
+        lookup: "site:bunnings.com.au 0054515 3M Respirator",
         note: "Mandatory when applying solvent-heavy ceramic coatings (CSL / EXOv5) inside a garage."
       },
       {
         id: "bun-2", step: 4, store: "Bunnings", storeCls: "bun", category: "PPE, Storage & Electrical",
         brand: "3M", name: "Safety Glasses With Dust Guard — Clear",
         model: "Anti-Splash Clear Wraparound", sku: "I/N: 2970463", qty: 1, unitPrice: 19.70, isEst: false,
-        q: "2970463",
+        lookup: "site:bunnings.com.au 2970463 3M Safety Glasses",
         note: "Protects eyes from wheel cleaner splashback & iron remover mist."
       },
       {
         id: "bun-3", step: 4, store: "Bunnings", storeCls: "bun", category: "PPE, Storage & Electrical",
         brand: "All Set", name: "50L Clear Modular Storage Container w/ Clip Lid (×2)",
         model: "Clean Towels + Used Towels Tubs", sku: "I/N: 0219783", qty: 2, unitPrice: 6.45, isEst: false,
-        q: "0219783",
+        lookup: "site:bunnings.com.au 0219783 All Set 50L",
         note: "Label 1× 'CLEAN TOWELS' and 1× 'USED TOWELS'. (IP67 Ezy Storage 0204842 @ $17.90 if damp garage)."
       },
       {
         id: "bun-4", step: 4, store: "Bunnings", storeCls: "bun", category: "PPE, Storage & Electrical",
         brand: "Click", name: "4-Outlet Heavy-Duty Power Block with RCD Safety Switch",
         model: "Built-in RCD Trip Protection", sku: "RCD Power Block", qty: 1, unitPrice: 57.02, isEst: false,
-        q: "Click 4 Outlet RCD Power Block",
+        lookup: "site:bunnings.com.au Click 4 Outlet Power Block RCD",
         note: "Only needed if your garage GPO circuit doesn't already have an RCD safety switch on the meter board."
       }
     ];
 
-    const STORAGE_KEY = "detail_setup_3cars_v2";
+    const STORAGE_KEY = "detail_setup_3cars_v3";
     let state = loadState();
     let activeStep = "ALL";
     let hideDone = false;
@@ -734,21 +754,28 @@
 
     function loadState() {
       try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        if (raw) return JSON.parse(raw);
+        const raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem("detail_setup_3cars_v2");
+        if (raw) {
+          const p = JSON.parse(raw);
+          return {
+            checked: p.checked || {},
+            customPrices: p.customPrices || {},
+            customUrls: p.customUrls || {}
+          };
+        }
       } catch (e) {}
-      return { checked: {}, customPrices: {} };
+      return { checked: {}, customPrices: {}, customUrls: {} };
     }
     function saveState() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     }
+    function esc(str) {
+      return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    }
     function getProductUrl(item) {
-      if (item.q.startsWith("http")) return item.q;
-      const enc = encodeURIComponent(item.q);
-      if (item.storeCls === "ds") return `https://detailingshed.com.au/search?type=product&q=${enc}`;
-      if (item.storeCls === "gng") return `https://www.gngsales.com.au/?s=${enc}`;
-      if (item.storeCls === "bun") return `https://www.bunnings.com.au/search/products?q=${enc}`;
-      return "#";
+      if (state.customUrls[item.id]) return state.customUrls[item.id];
+      if (item.directDefault) return item.directDefault;
+      return `https://www.google.com/search?q=${encodeURIComponent(item.lookup)}`;
     }
     function getUnitPrice(item) {
       return state.customPrices[item.id] !== undefined ? Number(state.customPrices[item.id]) : item.unitPrice;
@@ -764,11 +791,11 @@
       t.textContent = msg;
       t.classList.add("show");
       clearTimeout(window.__toastTimer);
-      window.__toastTimer = setTimeout(() => t.classList.remove("show"), 1800);
+      window.__toastTimer = setTimeout(() => t.classList.remove("show"), 1900);
     }
     function copyText(text) {
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(() => showToast("Copied: " + text));
+        navigator.clipboard.writeText(text).then(() => showToast("Copied!"));
       } else {
         const ta = document.createElement("textarea");
         ta.value = text;
@@ -776,7 +803,7 @@
         ta.select();
         document.execCommand("copy");
         document.body.removeChild(ta);
-        showToast("Copied: " + text);
+        showToast("Copied!");
       }
     }
     function updateStats() {
@@ -827,16 +854,16 @@
         html += `
           <div class="phase-banner ${info.cls}">
             <div class="phase-head">
-              <div class="phase-title">${info.title}</div>
+              <div class="phase-title">${esc(info.title)}</div>
               <div class="phase-total">${stepTotal > 0 ? fmtMoney(stepTotal) : "Prep"}</div>
             </div>
-            <div class="phase-sub">${info.sub}</div>
+            <div class="phase-sub">${esc(info.sub)}</div>
           </div>
         `;
 
         const cats = [...new Set(stepItems.map(i => i.category))];
         cats.forEach(cat => {
-          html += `<div class="cat-header">${cat}</div>`;
+          html += `<div class="cat-header">${esc(cat)}</div>`;
           stepItems.filter(i => i.category === cat).forEach(item => {
             const done = !!state.checked[item.id];
             const unit = getUnitPrice(item);
@@ -846,6 +873,8 @@
             const priceLabel = item.isAction ? "ACTION" : `${estMark}${fmtMoney(line)}`;
             const subQty = item.qty > 1 && !item.isAction ? `<div style="font-size:0.64rem;font-weight:500;opacity:0.85;">${item.qty} × ${fmtMoney(unit)}</div>` : "";
             const href = getProductUrl(item);
+            const hasSavedUrl = !!state.customUrls[item.id];
+            const linkLabel = item.isAction ? "Open Site ↗" : (hasSavedUrl ? "Direct Link ↗" : "Find Product ↗");
 
             html += `
               <div class="item-card ${done ? "done" : ""}" data-id="${item.id}">
@@ -855,19 +884,20 @@
                 <div class="item-body">
                   <div class="item-top">
                     <div>
-                      <div class="brand-line">${item.brand} • ${item.model}</div>
-                      <div class="item-name">${item.name}</div>
+                      <div class="brand-line">${esc(item.brand)} • ${esc(item.model)}</div>
+                      <div class="item-name">${esc(item.name)}</div>
                     </div>
                     <div class="price-pill ${item.isAction ? "action" : (!isCustom && item.isEst ? "est" : "")}" data-action="edit-price">
                       ${priceLabel}${subQty}
                     </div>
                   </div>
                   <div class="meta-row">
-                    <span class="pill store-pill ${item.storeCls}">${item.store}</span>
-                    <span class="pill sku-pill" data-action="copy-sku" data-sku="${item.sku}">SKU: ${item.sku}</span>
-                    <a class="pill link-pill" href="${href}" target="_blank" rel="noopener noreferrer">Open Product ↗</a>
+                    <span class="pill store-pill ${item.storeCls}">${esc(item.store)}</span>
+                    <span class="pill sku-pill" data-action="copy-sku" data-sku="${esc(item.sku)}">SKU: ${esc(item.sku)}</span>
+                    <a class="pill link-pill ${hasSavedUrl ? "saved" : ""}" href="${esc(href)}" target="_blank" rel="noopener noreferrer">${linkLabel}</a>
+                    ${item.isAction ? "" : `<button class="pill save-url-pill" type="button" data-action="save-url">${hasSavedUrl ? "Edit Link" : "+ Paste Link"}</button>`}
                   </div>
-                  <div class="note-txt">${item.note}</div>
+                  <div class="note-txt">${esc(item.note)}</div>
                 </div>
               </div>
             `;
@@ -887,6 +917,33 @@
 
       if (e.target.closest("[data-action='copy-sku']")) {
         copyText(e.target.closest("[data-action='copy-sku']").dataset.sku);
+        return;
+      }
+
+      if (e.target.closest("[data-action='save-url']")) {
+        const cur = state.customUrls[id] || "";
+        const val = prompt(
+          `Paste the exact product URL for:\n${item.brand} ${item.name}\n\n(Leave blank & tap OK to clear a saved link)`,
+          cur
+        );
+        if (val === null) return;
+        const trimmed = val.trim();
+        if (!trimmed) {
+          delete state.customUrls[id];
+          saveState();
+          render();
+          showToast("Saved link cleared");
+          return;
+        }
+        const safeUrl = /^https?:\/\//i.test(trimmed) ? trimmed : "https://" + trimmed;
+        if (!/^https?:\/\/[^ "]+$/i.test(safeUrl)) {
+          showToast("Invalid URL");
+          return;
+        }
+        state.customUrls[id] = safeUrl;
+        saveState();
+        render();
+        showToast("Direct link saved!");
         return;
       }
 
@@ -935,16 +992,16 @@
       copyText(text);
     });
 
-    document.getElementById("resetBtn").addEventListener("click", () => {
-      if (confirm("Reset all ticks and custom prices?")) {
-        state = { checked: {}, customPrices: {} };
-        saveState();
-        render();
-        showToast("Checklist reset");
-      }
+    document.getElementById("backupBtn").addEventListener("click", () => {
+      copyText(JSON.stringify(state));
     });
 
-    render();
-  </script>
-</body>
-</html>
+    document.getElementById("restoreBtn").addEventListener("click", () => {
+      const raw = prompt("Paste your saved Backup Data JSON:");
+      if (!raw) return;
+      try {
+        const parsed = JSON.parse(raw);
+        state = {
+          checked: parsed.checked || {},
+          customPrices: parsed.customPrices || {},
+          customU
