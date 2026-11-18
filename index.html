@@ -1004,4 +1004,26 @@
         state = {
           checked: parsed.checked || {},
           customPrices: parsed.customPrices || {},
-          customU
+          customUrls: parsed.customUrls || {}
+        };
+        saveState();
+        render();
+        showToast("Data restored!");
+      } catch (err) {
+        showToast("Invalid backup text");
+      }
+    });
+
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      if (confirm("Reset all ticks, custom prices, and saved links?")) {
+        state = { checked: {}, customPrices: {}, customUrls: {} };
+        saveState();
+        render();
+        showToast("Checklist reset");
+      }
+    });
+
+    render();
+  </script>
+</body>
+</html>
