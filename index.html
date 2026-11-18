@@ -2,319 +2,543 @@
 <html lang="en-AU">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#0a0b0e" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="DA Checklist" />
-  <title>DA POLISHER MASTER CHECKLIST</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%230b0d12'/%3E%3Ccircle cx='256' cy='236' r='144' fill='none' stroke='%2300a3ff' stroke-width='18'/%3E%3Ccircle cx='256' cy='236' r='98' fill='none' stroke='%23cfd8e3' stroke-width='26'/%3E%3Ccircle cx='272' cy='224' r='38' fill='%2300a3ff'/%3E%3Cpath d='M252 224 L267 239 L295 208' fill='none' stroke='%23ffffff' stroke-width='14' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
-  <link id="apple-touch-icon-link" rel="apple-touch-icon" sizes="180x180" href="" />
-  <script>
-    (function(){try{var c=document.createElement('canvas');c.width=180;c.height=180;var x=c.getContext('2d');if(!x)return;var g=x.createLinearGradient(0,0,180,180);g.addColorStop(0,'#161b24');g.addColorStop(1,'#08090c');x.fillStyle=g;x.fillRect(0,0,180,180);x.strokeStyle='#00a3ff';x.lineWidth=6;x.beginPath();x.arc(90,84,50,0,Math.PI*2);x.stroke();var s=x.createLinearGradient(45,39,135,129);s.addColorStop(0,'#eef3fa');s.addColorStop(0.5,'#9ba6b8');s.addColorStop(1,'#dfe6f0');x.strokeStyle=s;x.lineWidth=10;x.beginPath();x.arc(90,84,34,0,Math.PI*2);x.stroke();x.fillStyle='#00a3ff';x.beginPath();x.arc(96,80,13,0,Math.PI*2);x.fill();x.strokeStyle='#fff';x.lineWidth=5;x.lineCap='round';x.lineJoin='round';x.beginPath();x.moveTo(89,80);x.lineTo(94,85);x.lineTo(104,74);x.stroke();x.fillStyle='#d8e1ee';x.font='700 18px -apple-system,sans-serif';x.textAlign='center';x.fillText('DA MASTER',90,158);document.getElementById('apple-touch-icon-link').href=c.toDataURL('image/png');}catch(e){}})();
-  </script>
+  <meta name="apple-mobile-web-app-title" content="Detail Rig" />
+  <meta name="theme-color" content="#0b0f17" />
+  <title>3-Car Pro Detailing Setup</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230b0f17'/%3E%3Ccircle cx='50' cy='50' r='34' fill='none' stroke='%2338bdf8' stroke-width='7'/%3E%3Cpath d='M34 51l11 11 22-24' fill='none' stroke='%2322c55e' stroke-width='8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230f172a'/%3E%3Ccircle cx='50' cy='50' r='34' fill='none' stroke='%2338bdf8' stroke-width='7'/%3E%3Cpath d='M34 51l11 11 22-24' fill='none' stroke='%2322c55e' stroke-width='8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
   <style>
-    :root{--bg:#090a0d;--surf:#12151c;--card:#171b24;--chk:#111822;--bdr:rgba(196,208,224,.13);--bdr2:rgba(196,208,224,.25);--s1:#eef2f8;--s2:#b6c0cf;--s3:#7f8a9c;--blue:#00a3ff;--blue2:#36b9ff;--bsoft:rgba(0,163,255,.15);--bglow:rgba(0,163,255,.35);--amb:#f59e0b;--asoft:rgba(245,158,11,.14);--red:#ef4444;--st:env(safe-area-inset-top,0px);--sb:env(safe-area-inset-bottom,0px)}
-    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--s1);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;overscroll-behavior-y:contain}
-    body{min-height:100dvh;padding-bottom:calc(28px + var(--sb))}
-    button,input{font-family:inherit;touch-action:manipulation}
-    .hdr{position:sticky;top:0;z-index:40;background:rgba(9,10,13,.88);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--bdr);padding:calc(12px + var(--st)) 16px 12px}
-    .hdr-in{max-width:760px;margin:0 auto}
-    .top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
-    .eye{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue2);margin-bottom:2px}
-    .ttl{margin:0;font-size:18px;font-weight:800;letter-spacing:.02em;background:linear-gradient(135deg,#fff,#c6d0df 55%,#8c98ab);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.15}
-    .acts{display:flex;gap:8px;flex-shrink:0}
-    .btn{height:36px;padding:0 11px;border-radius:10px;border:1px solid var(--bdr);background:var(--surf);color:var(--s2);font-size:12px;font-weight:600;display:inline-flex;align-items:center;cursor:pointer}
-    .btn.dng{color:#fca5a5;border-color:rgba(239,68,68,.25);background:rgba(239,68,68,.08)}
-    .btn.pri{color:var(--blue2);border-color:rgba(0,163,255,.35);background:rgba(0,163,255,.1)}
-    .sum{background:linear-gradient(180deg,rgba(28,33,44,.92),rgba(18,21,28,.96));border:1px solid var(--bdr2);border-radius:12px;padding:11px 12px;margin-bottom:10px}
-    .sum-row{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:7px;flex-wrap:wrap}
-    .pct{font-size:22px;font-weight:800;color:var(--blue2);font-variant-numeric:tabular-nums;margin-right:8px}
-    .cnt{font-size:13px;font-weight:600;color:var(--s2);font-variant-numeric:tabular-nums}
-    .mny{font-size:12px;color:var(--s3);font-variant-numeric:tabular-nums}.mny strong{color:var(--s1);font-size:13px}
-    .trk{width:100%;height:7px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}
-    .fil{height:100%;width:0%;border-radius:999px;background:linear-gradient(90deg,#0077cc,var(--blue) 55%,#5ad0ff);box-shadow:0 0 12px var(--bglow);transition:width .25s ease}
-    .srch-w{position:relative;display:flex;align-items:center;margin-bottom:8px}
-    .srch-i{position:absolute;left:12px;width:16px;height:16px;color:var(--s3);pointer-events:none}
-    .srch{width:100%;height:42px;padding:0 38px 0 36px;border-radius:12px;border:1px solid var(--bdr);background:var(--surf);color:var(--s1);font-size:16px;outline:none}
-    .srch::placeholder{color:var(--s3);font-size:14px}
-    .srch:focus{border-color:var(--blue);box-shadow:0 0 0 3px var(--bsoft)}
-    .clr{position:absolute;right:6px;width:30px;height:30px;border:none;border-radius:8px;background:rgba(255,255,255,.08);color:var(--s2);font-size:16px;display:none;align-items:center;justify-content:center;cursor:pointer}
-    .clr.on{display:flex}
-    .pills{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}.pills::-webkit-scrollbar{display:none}
-    .pill{border:1px solid var(--bdr);background:var(--surf);color:var(--s3);border-radius:999px;padding:6px 12px;font-size:12px;font-weight:600;white-space:nowrap;cursor:pointer}
-    .pill.on{background:var(--bsoft);border-color:var(--blue);color:var(--blue2)}
-    .main{max-width:760px;margin:0 auto;padding:14px 16px 24px}
-    .cat{margin-bottom:22px}
-    .cat-h{background:linear-gradient(135deg,#171c26,#11141c);border:1px solid var(--bdr);border-radius:12px;padding:12px 14px;margin-bottom:10px}
-    .cat-t{display:flex;justify-content:space-between;gap:10px;margin-bottom:8px}
-    .cat-n{font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--blue2);text-transform:uppercase}
-    .cat-ttl{margin:2px 0 0;font-size:15px;font-weight:800;color:var(--s1)}
-    .cat-m{text-align:right;flex-shrink:0;font-variant-numeric:tabular-nums}
-    .cat-sub{font-size:14px;font-weight:800;color:var(--s1)}
-    .cat-prg{font-size:12px;font-weight:600;color:var(--s3)}.cat-prg.done{color:var(--blue2)}
-    .cat-bar{height:5px;border-radius:999px;background:rgba(255,255,255,.07);overflow:hidden}
-    .cat-fil{height:100%;width:0%;border-radius:999px;background:linear-gradient(90deg,#0082d9,var(--blue2));transition:width .22s ease}
-    .list{display:flex;flex-direction:column;gap:9px}
-    .card{display:flex;align-items:flex-start;gap:12px;background:var(--card);border:1px solid var(--bdr);border-radius:16px;padding:13px 14px;cursor:pointer;user-select:none;-webkit-user-select:none}
-    .card.chk{background:var(--chk);border-color:rgba(0,163,255,.42)}
-    .cbox{flex-shrink:0;width:48px;height:48px;margin:-4px 0 -4px -4px;padding:0;border:none;background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer}
-    .cvis{width:34px;height:34px;border-radius:10px;border:2px solid var(--bdr2);background:rgba(255,255,255,.03);display:flex;align-items:center;justify-content:center;transition:all .16s ease}
-    .card.chk .cvis{border-color:var(--blue);background:var(--blue);box-shadow:0 0 14px var(--bglow)}
-    .cvis svg{width:20px;height:20px;stroke:#fff;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:0;transform:scale(.75);transition:all .14s ease}
-    .card.chk .cvis svg{opacity:1;transform:scale(1)}
-    .pbody{flex:1;min-width:0}
-    .pmeta{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:3px}
-    .pnum{font-size:11px;font-weight:700;color:var(--blue2)}
-    .pbrd{font-size:11px;font-weight:700;text-transform:uppercase;color:var(--s2);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);padding:1px 7px;border-radius:999px}
-    .pname{margin:0;font-size:15px;font-weight:700;line-height:1.3;color:var(--s1)}
-    .card.chk .pname{color:var(--s2);text-decoration:line-through;text-decoration-color:rgba(0,163,255,.65)}
-    .pspecs{display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:7px;font-size:12.5px;color:var(--s3);font-variant-numeric:tabular-nums}
-    .pspecs strong{color:var(--s2);font-weight:600}
-    .prow{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-top:8px;padding-top:8px;border-top:1px dashed rgba(196,208,224,.12);font-variant-numeric:tabular-nums}
-    .uprice{font-size:12.5px;color:var(--s3)}.uprice strong{color:var(--s2)}
-    .ltotal{font-size:14px;font-weight:800;color:var(--s1)}.card.chk .ltotal{color:var(--blue2)}
-    .note{margin-top:8px;padding:7px 10px;border-radius:8px;font-size:12px;line-height:1.35;color:var(--s2);background:rgba(255,255,255,.04);border-left:3px solid var(--s3)}
-    .note.imp{color:#fde68a;background:var(--asoft);border-left-color:var(--amb);font-weight:600}
-    .grand{margin-top:10px;background:linear-gradient(135deg,#161c27,#0f131b);border:1px solid rgba(0,163,255,.35);border-radius:16px;padding:16px}
-    .grow{display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px;color:var(--s3);font-variant-numeric:tabular-nums}
-    .grow.tot{margin:10px 0 0;padding-top:10px;border-top:1px solid var(--bdr);font-size:16px;font-weight:800;color:var(--s1)}
-    .grow.tot .amt{font-size:20px;color:var(--blue2)}
-    .empty{text-align:center;padding:42px 20px;background:var(--surf);border:1px solid var(--bdr);border-radius:16px}
-    .empty h3{margin:0 0 6px;font-size:16px}.empty p{margin:0 0 14px;font-size:13px;color:var(--s3)}
-    .mod-bg{position:fixed;inset:0;z-index:100;background:rgba(4,5,8,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:none;align-items:flex-end;justify-content:center;padding:16px 16px calc(16px + var(--sb))}
-    .mod-bg.on{display:flex}
-    @media(min-width:600px){.mod-bg{align-items:center}}
-    .mod{width:100%;max-width:460px;background:#151923;border:1px solid var(--bdr2);border-radius:20px;padding:20px}
-    .mod h2{margin:0 0 8px;font-size:18px}.mod p,.mod ol{margin:0 0 16px;font-size:14px;line-height:1.5;color:var(--s2)}
-    .mod ol{padding-left:18px}.mod li{margin-bottom:6px}
-    .macts{display:flex;gap:10px}
-    .mbtn{flex:1;height:46px;border-radius:12px;border:1px solid var(--bdr);background:var(--card);color:var(--s1);font-size:14px;font-weight:700;cursor:pointer}
-    .mbtn.dng{background:var(--red);border-color:var(--red);color:#fff}
-    .mbtn.pri{background:var(--blue);border-color:var(--blue);color:#fff}
+    :root {
+      --bg: #0b0f17;
+      --card: #131a26;
+      --card-done: #0f151e;
+      --border: #222d40;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --green: #22c55e;
+      --amber: #f59e0b;
+      --purple: #a78bfa;
+      --rose: #fb7185;
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bot: env(safe-area-inset-bottom, 0px);
+    }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding-bottom: calc(80px + var(--safe-bot));
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(11, 15, 23, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: calc(12px + var(--safe-top)) 14px 10px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 1.06rem;
+      font-weight: 750;
+      letter-spacing: -0.01em;
+    }
+    .subtitle {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .stat-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 7px 9px;
+    }
+    .stat-label {
+      font-size: 0.64rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+    }
+    .stat-val {
+      font-size: 0.94rem;
+      font-weight: 700;
+      margin-top: 2px;
+      font-variant-numeric: tabular-nums;
+    }
+    .stat-val.green { color: var(--green); }
+    .stat-val.accent { color: var(--accent); }
+    .progress-wrap {
+      margin-top: 9px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .progress-bar {
+      flex: 1;
+      height: 7px;
+      background: #1e293b;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--green));
+      transition: width 0.25s ease;
+    }
+    .progress-txt {
+      font-size: 0.74rem;
+      font-weight: 650;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .controls {
+      margin-top: 10px;
+      display: flex;
+      gap: 8px;
+    }
+    .search-input {
+      flex: 1;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 11px;
+      color: var(--text);
+      font-size: 0.85rem;
+      outline: none;
+    }
+    .search-input:focus { border-color: var(--accent); }
+    .toggle-btn {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 10px;
+      padding: 0 11px;
+      font-size: 0.75rem;
+      font-weight: 650;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .toggle-btn.active {
+      background: rgba(56, 189, 248, 0.14);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .tabs {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding: 10px 14px 4px;
+      scrollbar-width: none;
+    }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tab {
+      flex: 0 0 auto;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 0.76rem;
+      font-weight: 650;
+      cursor: pointer;
+    }
+    .tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #08101c;
+    }
+    main { padding: 8px 14px; }
+    .phase-banner {
+      margin: 14px 0 8px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: #101927;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+    }
+    .phase-banner.step1 { border-left-color: var(--amber); }
+    .phase-banner.step2 { border-left-color: var(--purple); }
+    .phase-banner.step3 { border-left-color: var(--accent); }
+    .phase-banner.step4 { border-left-color: var(--green); }
+    .phase-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .phase-title { font-size: 0.9rem; font-weight: 750; }
+    .phase-sub {
+      font-size: 0.74rem;
+      color: var(--muted);
+      margin-top: 4px;
+      line-height: 1.38;
+    }
+    .phase-total {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .cat-header {
+      margin: 12px 2px 6px;
+      font-size: 0.71rem;
+      font-weight: 750;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+    }
+    .item-card {
+      display: flex;
+      gap: 11px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: 11px 12px;
+      margin-bottom: 8px;
+      transition: opacity 0.18s ease, background 0.18s ease;
+    }
+    .item-card.done {
+      background: var(--card-done);
+      opacity: 0.58;
+    }
+    .item-card.done .item-name {
+      text-decoration: line-through;
+      color: var(--muted);
+    }
+    .check-btn {
+      flex: 0 0 28px;
+      height: 28px;
+      border-radius: 8px;
+      border: 2px solid #3b4b68;
+      background: transparent;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      margin-top: 2px;
+      padding: 0;
+    }
+    .item-card.done .check-btn {
+      background: var(--green);
+      border-color: var(--green);
+    }
+    .check-btn svg {
+      width: 17px;
+      height: 17px;
+      stroke: #07130c;
+      stroke-width: 3;
+      fill: none;
+      display: none;
+    }
+    .item-card.done .check-btn svg { display: block; }
+    .item-body { flex: 1; min-width: 0; }
+    .item-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .brand-line {
+      font-size: 0.69rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .item-name {
+      font-size: 0.91rem;
+      font-weight: 650;
+      line-height: 1.28;
+      margin-top: 2px;
+    }
+    .price-pill {
+      flex: 0 0 auto;
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.32);
+      color: #86efac;
+      border-radius: 8px;
+      padding: 4px 8px;
+      font-size: 0.8rem;
+      font-weight: 750;
+      font-variant-numeric: tabular-nums;
+      cursor: pointer;
+      text-align: right;
+    }
+    .price-pill.est {
+      background: rgba(245, 158, 11, 0.12);
+      border-color: rgba(245, 158, 11, 0.35);
+      color: #fcd34d;
+    }
+    .price-pill.action {
+      background: rgba(148, 163, 184, 0.12);
+      border-color: var(--border);
+      color: var(--muted);
+    }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 7px;
+      align-items: center;
+    }
+    .pill {
+      font-size: 0.69rem;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: #1b2434;
+      border: 1px solid #2a374f;
+      color: #cbd5e1;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .store-pill.gng { border-color: rgba(167, 139, 250, 0.4); color: #ddd6fe; }
+    .store-pill.ds { border-color: rgba(56, 189, 248, 0.4); color: #bae6fd; }
+    .store-pill.bun { border-color: rgba(34, 197, 94, 0.4); color: #bbf7d0; }
+    .sku-pill {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      cursor: pointer;
+    }
+    .link-pill {
+      background: rgba(56, 189, 248, 0.14);
+      border-color: rgba(56, 189, 248, 0.45);
+      color: #7dd3fc;
+      font-weight: 700;
+    }
+    .note-txt {
+      font-size: 0.74rem;
+      color: var(--muted);
+      margin-top: 6px;
+      line-height: 1.35;
+    }
+    .footer-actions {
+      margin: 22px 0 12px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-ghost {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 9px 14px;
+      border-radius: 10px;
+      font-size: 0.78rem;
+      font-weight: 650;
+      cursor: pointer;
+    }
+    .btn-danger { color: var(--rose); border-color: rgba(251, 113, 133, 0.3); }
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: calc(20px + var(--safe-bot));
+      transform: translateX(-50%) translateY(20px);
+      background: #1e293b;
+      border: 1px solid var(--accent);
+      color: var(--text);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 650;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.2s ease;
+      z-index: 60;
+      white-space: nowrap;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .empty {
+      text-align: center;
+      color: var(--muted);
+      padding: 36px 16px;
+      font-size: 0.88rem;
+    }
   </style>
 </head>
 <body>
-  <header class="hdr">
-    <div class="hdr-in">
-      <div class="top">
-        <div>
-          <div class="eye">Pro Detailing Equipment (AUD)</div>
-          <h1 class="ttl">DA POLISHER MASTER CHECKLIST</h1>
-        </div>
-        <div class="acts">
-          <button type="button" id="instBtn" class="btn pri">iPhone App</button>
-          <button type="button" id="rstBtn" class="btn dng">Reset</button>
-        </div>
+  <header>
+    <div>
+      <h1>3-Car Pro Detailing Setup (3 Stores)</h1>
+      <div class="subtitle">Tap <strong>Open Product ↗</strong> to view at shop • Tap SKU to copy • Tap $ to edit</div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="stat-label">Est. Total</div>
+        <div class="stat-val accent" id="totalBudget">$0</div>
       </div>
-      <section class="sum">
-        <div class="sum-row">
-          <div><span id="oPct" class="pct">0%</span><span id="oCnt" class="cnt">0 / 36 items</span></div>
-          <div class="mny">Checked: <strong id="cVal">$0.00</strong> / <strong id="tVal">$5,203.29</strong> AUD</div>
-        </div>
-        <div class="trk"><div id="oFil" class="fil"></div></div>
-      </section>
-      <div class="srch-w">
-        <svg class="srch-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input type="search" id="srch" class="srch" placeholder="Search by product name, brand or SKU..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
-        <button type="button" id="clrBtn" class="clr" aria-label="Clear">&times;</button>
+      <div class="stat-box">
+        <div class="stat-label">Bought</div>
+        <div class="stat-val green" id="spentBudget">$0</div>
       </div>
-      <div class="pills">
-        <button type="button" class="pill on" data-f="all">All (36)</button>
-        <button type="button" class="pill" data-f="rem">Remaining (<span id="remC">36</span>)</button>
-        <button type="button" class="pill" data-f="done">Completed (<span id="donC">0</span>)</button>
+      <div class="stat-box">
+        <div class="stat-label">Remaining</div>
+        <div class="stat-val" id="remBudget">$0</div>
       </div>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-txt" id="progressTxt">0 / 0</div>
+    </div>
+
+    <div class="controls">
+      <input id="searchInput" class="search-input" type="search" placeholder="Search brand, SKU, store, product..." />
+      <button id="hideDoneBtn" class="toggle-btn">Hide Bought</button>
     </div>
   </header>
 
-  <main id="main" class="main"></main>
-
-  <div id="rstMod" class="mod-bg" role="dialog" aria-modal="true">
-    <div class="mod">
-      <h2>Reset Checklist?</h2>
-      <p>This will untick all completed items on this device. Your equipment list and prices will stay intact.</p>
-      <div class="macts">
-        <button type="button" id="cRst" class="mbtn">Cancel</button>
-        <button type="button" id="yRst" class="mbtn dng">Reset All</button>
-      </div>
-    </div>
+  <div class="tabs" id="tabs">
+    <button class="tab active" data-step="ALL">All (3 Stores)</button>
+    <button class="tab" data-step="1">1. Prep</button>
+    <button class="tab" data-step="2">2. GNG Sales</button>
+    <button class="tab" data-step="3">3. Detailing Shed</button>
+    <button class="tab" data-step="4">4. Bunnings</button>
   </div>
 
-  <div id="instMod" class="mod-bg" role="dialog" aria-modal="true">
-    <div class="mod">
-      <h2>Add to iPhone Home Screen</h2>
-      <p>Install this checklist onto your iPhone Home Screen:</p>
-      <ol>
-        <li>Open this page in <strong>Safari</strong> on your iPhone.</li>
-        <li>Tap the <strong>Share</strong> icon (square with upward arrow).</li>
-        <li>Scroll down and tap <strong>Add to Home Screen</strong>.</li>
-        <li>Tap <strong>Add</strong>. Your ticks save automatically on your phone.</li>
-      </ol>
-      <div class="macts"><button type="button" id="cInst" class="mbtn pri">Done</button></div>
-    </div>
+  <main id="listContainer"></main>
+
+  <div class="footer-actions">
+    <button class="btn-ghost" id="exportBtn">Copy Remaining List</button>
+    <button class="btn-ghost btn-danger" id="resetBtn">Reset All Progress</button>
   </div>
+
+  <div class="toast" id="toast"></div>
 
   <script>
-    (function(){
-      'use strict';
-      var KEY='da_polisher_master_checklist_v1';
-      var CATS=[
-        {id:1,n:'PRESSURE WASHING'},
-        {id:2,n:'POLISHERS AND ACCESSORIES'},
-        {id:3,n:'BUCKETS AND WASH TOOLS'},
-        {id:4,n:'WASHING AND DECONTAMINATION'},
-        {id:5,n:'DRYING AND MICROFIBRE'},
-        {id:6,n:'PAINT PROTECTION'},
-        {id:7,n:'GLASS AND INTERIOR'},
-        {id:8,n:'SAFETY AND ELECTRICAL'}
-      ];
-      var PRODS=[
-        {id:1,c:1,n:'Kränzle K 1050 TST Pressure Washer',b:'Kränzle',s:'495101',q:1,ql:'1',p:1402.50},
-        {id:2,c:1,n:'MTM Hydro PF22.2 Foam Cannon',b:'MTM Hydro',s:'PF22.2',q:1,ql:'1',p:139.90},
-        {id:3,c:2,n:'RUPES LHR15 Mark V Luxury Kit',b:'RUPES',s:'LHR15V/LUX',q:1,ql:'1',p:1140.90},
-        {id:4,c:2,n:'RUPES LHR75E Mini Luxury Kit',b:'RUPES',s:'LHR75E/LUX',q:1,ql:'1',p:1057.50},
-        {id:5,c:2,n:'Wheel Woolies Plus / Braun Brush Foam Pad Cleaning Brush',b:'Wheel Woolies Plus / Braun Brush',s:'BB-AC9BBK',q:1,ql:'1',p:11.95},
-        {id:6,c:3,n:'Economax Car Wash Bucket Kit with Grit Guards',b:'Economax',s:'EC520',q:1,ql:'1 kit',p:77.64,note:'Includes 2 × 20L buckets and lids, no dolly'},
-        {id:7,c:3,n:'GYEON Q²M Smoothie Wash Mitt',b:'GYEON',s:'116042',q:2,ql:'2',p:38.99},
-        {id:8,c:3,n:'GYEON Q²M Wheel Mitt',b:'GYEON',s:'116136',q:1,ql:'1',p:39.99},
-        {id:9,c:3,n:'GYEON Q²M Wheel Brush Medium',b:'GYEON',s:'116050',q:1,ql:'1',p:42.99},
-        {id:10,c:3,n:'Vikan Transport Wheel Arch Brush, 420mm',b:'Vikan',s:'V522252 / 522252',q:1,ql:'1',p:19.50},
-        {id:11,c:3,n:'GYEON Q²M Tire Brush',b:'GYEON',s:'116131',q:1,ql:'1',p:8.99},
-        {id:12,c:3,n:'Economax 3-piece Detailing Brush Set',b:'Economax',s:'A07-EC0015',q:1,ql:'1 set',p:19.95,note:'Firm, medium and soft brushes'},
-        {id:13,c:4,n:'GYEON Q²M Foam 1L',b:'GYEON',s:'116043',q:1,ql:'1',p:32.99},
-        {id:14,c:4,n:'GYEON Q²M Bathe 500mL',b:'GYEON',s:'116160',q:1,ql:'1',p:22.99},
-        {id:15,c:4,n:'GYEON Q²M APC 1L',b:'GYEON',s:'116123',q:1,ql:'1',p:29.99},
-        {id:16,c:4,n:'GYEON Q²M Iron REDEFINED 500mL',b:'GYEON',s:'116033',q:1,ql:'1',p:27.99},
-        {id:17,c:4,n:'GYEON Q²M Tar REDEFINED 500mL',b:'GYEON',s:'116019',q:1,ql:'1',p:32.99},
-        {id:18,c:4,n:'GYEON Q²M ClayLube REDEFINED 500mL',b:'GYEON',s:'116029',q:1,ql:'1',p:23.99},
-        {id:19,c:4,n:'DIY Detail Quad Fold Fine Grade Clay Towel V2',b:'DIY Detail',s:'Not verified',q:1,ql:'1',p:59.95},
-        {id:20,c:4,n:'Kwazar Mercury Super 360 Pro 500mL Spray Bottle',b:'Kwazar',s:'WTM0030',q:4,ql:'4',p:18.70},
-        {id:21,c:5,n:'GYEON Q²M Silk Dryer Large',b:'GYEON',s:'116040',q:2,ql:'2',p:44.00},
-        {id:22,c:5,n:'GYEON Q²M Soft Wipe 40 × 40cm',b:'GYEON',s:'116170',q:4,ql:'4',p:10.99},
-        {id:23,c:5,n:'GYEON Q²M Polish Wipe Cloth',b:'GYEON',s:'116004',q:10,ql:'10',p:10.99},
-        {id:24,c:5,n:'IKEA SAMLA 22L Box with Lid',b:'IKEA',s:'394.408.28',q:2,ql:'2',p:7.99,note:'Use one for clean towels and one for used towels.'},
-        {id:25,c:5,n:'GYEON Q²M Towel Wash 500mL',b:'GYEON',s:'116045',q:1,ql:'1',p:29.99},
-        {id:26,c:6,n:'GYEON Q² MOHS EVO 50mL',b:'GYEON',s:'116015',q:1,ql:'1',p:189.99,note:'IMPORTANT: This must be the 50mL version, NOT the 100mL version.',imp:1},
-        {id:27,c:6,n:'GYEON Q²M Prep 500mL',b:'GYEON',s:'116037',q:1,ql:'1',p:24.99},
-        {id:28,c:6,n:'GYEON Q²M Applicator Block',b:'GYEON',s:'116070',q:1,ql:'1',p:2.99},
-        {id:29,c:6,n:'GYEON Q²M Suede EVO Applicators 10 × 10cm',b:'GYEON',s:'116071',q:1,ql:'1 pack of 10',p:14.99},
-        {id:30,c:7,n:'GYEON Q²M Glass 500mL',b:'GYEON',s:'116032',q:1,ql:'1',p:19.99},
-        {id:31,c:7,n:'GYEON Q²M Glass Wipe EVO 40 × 40cm',b:'GYEON',s:'116146',q:1,ql:'1',p:12.99},
-        {id:32,c:7,n:'GYEON Q²M InteriorDetailer 500mL',b:'GYEON',s:'116117',q:1,ql:'1',p:28.99},
-        {id:33,c:7,n:'GYEON Q² Tire 500mL',b:'GYEON',s:'116157',q:1,ql:'1',p:35.99},
-        {id:34,c:8,n:'Ansell Microflex 93-852 Nitrile Gloves, Large, Box of 100',b:'Ansell',s:'A47469',q:1,ql:'1 box',p:48.42},
-        {id:35,c:8,n:'3M Fahrenheit Anti-Scratch Safety Goggles, Clear Anti-Fog Lens',b:'3M',s:'A41129',q:1,ql:'1',p:20.14},
-        {id:36,c:8,n:'Clipsal Rewirable 30mA In-Line RCD, 10A',b:'Clipsal',s:'PDL955RW',q:1,ql:'1',p:170.50}
-      ];
-      function cents(v){return Math.round(v*100);}
-      function aud(c){return '$'+(c/100).toLocaleString('en-AU',{minimumFractionDigits:2,maximumFractionDigits:2});}
-      function lineC(p){return cents(p.p)*p.q;}
-      function load(){try{var r=localStorage.getItem(KEY);return r?JSON.parse(r)||{}:{};}catch(e){return {};}}
-      function save(){try{localStorage.setItem(KEY,JSON.stringify(st.chk));}catch(e){}}
-      var st={chk:load(),q:'',f:'all'};
-      var main=document.getElementById('main'),oPct=document.getElementById('oPct'),oCnt=document.getElementById('oCnt'),cVal=document.getElementById('cVal'),tVal=document.getElementById('tVal'),oFil=document.getElementById('oFil'),remC=document.getElementById('remC'),donC=document.getElementById('donC'),srch=document.getElementById('srch'),clrBtn=document.getElementById('clrBtn'),pills=document.querySelectorAll('.pill'),rstMod=document.getElementById('rstMod'),instMod=document.getElementById('instMod');
-
-      function match(p){
-        var isC=!!st.chk[p.id];
-        if(st.f==='rem'&&isC)return false;
-        if(st.f==='done'&&!isC)return false;
-        var q=st.q.trim().toLowerCase();
-        if(!q)return true;
-        return p.n.toLowerCase().indexOf(q)!==-1||p.b.toLowerCase().indexOf(q)!==-1||p.s.toLowerCase().indexOf(q)!==-1;
+    const STEPS = {
+      1: {
+        cls: "step1",
+        title: "ORDER 1 — Prep Calls & Online Order (Before Driving)",
+        sub: "Do this first from home. Detailing Shed Caringbah is Click & Collect ONLY—order online and wait for the ready email."
+      },
+      2: {
+        cls: "step2",
+        title: "ORDER 2 — Store #1: GNG Sales (3 Foundry Rd, Seven Hills • ~12 mins)",
+        sub: "Mon–Fri hours • Ph: (02) 9680 4464 • Ask for bare/Base tools (LHR15V/BAS & LHR75E/STD) to save paying twice for bags."
+      },
+      3: {
+        cls: "step3",
+        title: "ORDER 3 — Store #2: Detailing Shed (Unit 6D, 1–3 Endeavour Rd, Caringbah)",
+        sub: "Click & Collect Pickup • Ph: (02) 9527 1850 • 48 out of 54 items come from here. Yellow $ = verify 1L/3.8L/50mL variant in cart."
+      },
+      4: {
+        cls: "step4",
+        title: "ORDER 4 — Store #3: Bunnings Warehouse (Castle Hill / Rouse Hill)",
+        sub: "Final local stop on the way home for respirator, safety glasses, 2× 50L towel tubs & RCD safety block."
       }
+    };
 
-      function render(){
-        var done=0,grand=0,chkVal=0;
-        for(var i=0;i<PRODS.length;i++){
-          var lc=lineC(PRODS[i]);grand+=lc;
-          if(st.chk[PRODS[i].id]){done++;chkVal+=lc;}
-        }
-        var pct=Math.round((done/PRODS.length)*100);
-        oPct.textContent=pct+'%';
-        oCnt.textContent=done+' / '+PRODS.length+' items';
-        cVal.textContent=aud(chkVal);
-        tVal.textContent=aud(grand);
-        oFil.style.width=pct+'%';
-        remC.textContent=String(PRODS.length-done);
-        donC.textContent=String(done);
+    const ITEMS = [
+      // ORDER 1: PREP
+      {
+        id: "prep-1", step: 1, store: "Detailing Shed (Call)", storeCls: "ds", category: "Pre-Order Checks",
+        brand: "Detailing Shed", name: "Confirm Kränzle K1152TST + MTM Bundle & Numatic George Stock",
+        model: "Caringbah Warehouse", sku: "(02) 9527 1850", qty: 1, unitPrice: 0, isEst: false, isAction: true,
+        url: "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGcuEo9DTYu-qPbqb8Ga7iDYGroO7ss_Lub1IgULHCrJOmF_4NFwIaz-9UVeiG8v47PikIEZQxjKt5-1qp1xvKxYoZ8SC5L9cBHWDFsPDEuKRU5",
+        note: "Confirm MTM bundle assembly wait time & whether George GVE370 is ready same-day."
+      },
+      {
+        id: "prep-2", step: 1, store: "Detailing Shed (Online)", storeCls: "ds", category: "Pre-Order Checks",
+        brand: "Detailing Shed", name: "Place Click & Collect Order Online (All 48 Order-3 Items)",
+        model: "Select Caringbah Pickup", sku: "detailingshed.com.au", qty: 1, unitPrice: 0, isEst: false, isAction: true,
+        url: "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGcuEo9DTYu-qPbqb8Ga7iDYGroO7ss_Lub1IgULHCrJOmF_4NFwIaz-9UVeiG8v47PikIEZQxjKt5-1qp1xvKxYoZ8SC5L9cBHWDFsPDEuKRU5",
+        note: "You CANNOT walk in and browse at Caringbah—order online first and wait for the pickup email."
+      },
+      {
+        id: "prep-3", step: 1, store: "GNG Sales (Call)", storeCls: "gng", category: "Pre-Order Checks",
+        brand: "GNG Sales", name: "Confirm RUPES LHR15V & LHR75E Stock & Bare-Tool Pricing",
+        model: "Seven Hills Distributor", sku: "(02) 9680 4464", qty: 1, unitPrice: 0, isEst: false, isAction: true,
+        url: "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFhd4boUxVBf2dBC6b-8_5G1Kzw5HZEahhCevU9MiiSDNR91qOg24zYLhJQjfF6sw7za9NNM1oqv9wtacpRxsX0zn9l7bY5Zj-tCc_USnpz6DJPzsRTLhVGURTb1Mdz8SO5sPZG75xSh_WqO-CwjOGdLdbSpvGxgtGJ6qzBsA==",
+        note: "Ask for LHR15V/BAS (or STD) + LHR75E/STD bare tool. Check Mon–Fri pickup hours."
+      },
 
-        main.innerHTML='';
-        var shown=0;
-        for(var c=0;c<CATS.length;c++){
-          var cat=CATS[c],allC=[],vis=[],catDone=0,catSub=0;
-          for(var j=0;j<PRODS.length;j++){
-            var pr=PRODS[j];
-            if(pr.c===cat.id){
-              allC.push(pr);catSub+=lineC(pr);
-              if(st.chk[pr.id])catDone++;
-              if(match(pr))vis.push(pr);
-            }
-          }
-          if(!vis.length)continue;
-          shown+=vis.length;
-          var cpct=Math.round((catDone/allC.length)*100);
-          var sec=document.createElement('section');sec.className='cat';
-          var ch=document.createElement('div');ch.className='cat-h';
-          ch.innerHTML='<div class="cat-t"><div><div class="cat-n">Category '+cat.id+'</div><h2 class="cat-ttl">'+cat.id+'. '+cat.n+'</h2></div><div class="cat-m"><div class="cat-sub">'+aud(catSub)+' AUD</div><div class="cat-prg'+(catDone===allC.length?' done':'')+'">'+catDone+' / '+allC.length+' ('+cpct+'%)</div></div></div><div class="cat-bar"><div class="cat-fil" style="width:'+cpct+'%"></div></div>';
-          sec.appendChild(ch);
+      // ORDER 2: STORE #1 — GNG SALES SEVEN HILLS
+      {
+        id: "gng-1", step: 2, store: "GNG Sales (Seven Hills)", storeCls: "gng", category: "Polishers",
+        brand: "RUPES", name: "BigFoot LHR15 Mark V 15mm Random Orbital Polisher",
+        model: "LHR15V/BAS or STD (LUX Kit Shown)", sku: "LHR15V/LUX", qty: 1, unitPrice: 1250, isEst: true,
+        url: "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFhd4boUxVBf2dBC6b-8_5G1Kzw5HZEahhCevU9MiiSDNR91qOg24zYLhJQjfF6sw7za9NNM1oqv9wtacpRxsX0zn9l7bY5Zj-tCc_USnpz6DJPzsRTLhVGURTb1Mdz8SO5sPZG75xSh_WqO-CwjOGdLdbSpvGxgtGJ6qzBsA==",
+        note: "Primary 15mm workhorse. Full LUX kit is $1,509 at GNG; ask in-store for Base/STD (~$1,250)."
+      },
+      {
+        id: "gng-2", step: 2, store: "GNG Sales (Seven Hills)", storeCls: "gng", category: "Polishers",
+        brand: "RUPES", name: "BigFoot LHR75E Mini 12mm Random Orbital Polisher",
+        model: "LHR75E/STD Bare Tool (LUX Kit Shown)", sku: "LHR75E/LUX", qty: 1, unitPrice: 780, isEst: true,
+        url: "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG2QnOqhyZphQRF1ZYrkJ5LD_heSwhVotc4DekwHCz6KZoMNQlK_HDzrdSSnP4Jwt2i1mM_BoJpMLyAn6qt_qRW4XOzGteOaGzKo4mOHchxzWPn9Ii0h3mk4zFEnyPEAjcMVqEuMmNjbxVeCfr1pEv71BGxgHRJAibK1yEC0FObAQ==",
+        note: "3-inch polisher for bumpers & pillars. Full LUX kit is $1,057.19; ask for bare tool (~$780)."
+      },
 
-          var lst=document.createElement('div');lst.className='list';
-          for(var k=0;k<vis.length;k++){
-            var p=vis[k],isC=!!st.chk[p.id];
-            var card=document.createElement('article');
-            card.className='card'+(isC?' chk':'');
-            card.setAttribute('data-id',p.id);
-            card.innerHTML='<button type="button" class="cbox" role="checkbox" aria-checked="'+isC+'"><span class="cvis"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span></button>';
-            var pb=document.createElement('div');pb.className='pbody';
-            var pm=document.createElement('div');pm.className='pmeta';
-            pm.innerHTML='<span class="pnum">#'+(p.id<10?'0'+p.id:p.id)+'</span>';
-            var bt=document.createElement('span');bt.className='pbrd';bt.textContent=p.b;pm.appendChild(bt);
-            var nm=document.createElement('h3');nm.className='pname';nm.textContent=p.n;
-            var sp=document.createElement('div');sp.className='pspecs';
-            sp.innerHTML='<span>SKU: <strong></strong></span><span>Qty: <strong></strong></span>';
-            sp.querySelectorAll('strong')[0].textContent=p.s;
-            sp.querySelectorAll('strong')[1].textContent=p.ql;
-            var prw=document.createElement('div');prw.className='prow';
-            prw.innerHTML='<span class="uprice">Price: <strong>'+aud(cents(p.p))+(p.q>1?' ea':'')+'</strong></span><span class="ltotal">'+(p.q>1?'Total: ':'')+aud(lineC(p))+' AUD</span>';
-            pb.appendChild(pm);pb.appendChild(nm);pb.appendChild(sp);pb.appendChild(prw);
-            if(p.note){var nt=document.createElement('div');nt.className='note'+(p.imp?' imp':'');nt.textContent=p.note;pb.appendChild(nt);}
-            card.appendChild(pb);lst.appendChild(card);
-          }
-          sec.appendChild(lst);main.appendChild(sec);
-        }
+      // ORDER 3: STORE #2 — DETAILING SHED CARINGBAH
+      {
+        id: "ds-1", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Pressure Washing & Drying",
+        brand: "Kränzle / MTM Hydro", name: "Kränzle K1152TST (QC) + Full MTM Hydro Bundle",
+        model: "10 L/min Brass Pump + PF22 + Short Gun", sku: "KR-K1152MTMBUND", qty: 1, unitPrice: 3015.95, isEst: false,
+        url: "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHQzbL6CAqOoybucrLODkkWhlVE_kQUSugQmGUl-DRWojKM91egllA9-600qRdPFfitVWQ281MWHYdvtGRaKZCdIz-ovzleE5dOSo98uhNv047BwZ-HRRVrIyJXxS38XynxLGdLH8X_Nau5Fqx7-S3tS4xEUa4xoTBEJ2GA1uqo3A==",
+        note: "Pre-assembled with stainless quick-connects so everything clicks straight together."
+      },
+      {
+        id: "ds-2", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Pressure Washing & Drying",
+        brand: "The Detail Guardz", name: "Hose Guide Tyre Rollers (2-Pack × 2 = 4 Guides)",
+        model: "New 2026 Version (2-Pack)", sku: "DG-HOSEGUIDE-2PK", qty: 2, unitPrice: 16.10, isEst: false,
+        url: "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGxwkRRppdTfgbzl0CSyPCoxnHBN-D3yNg-H0ROkUvYUuAezMe4_oG2VqVmXgJxKBddoaOwJyH9HBp1SOJwyOhgKw-5Xa2H7LcsXdMo9wU2xkc-jQt4h89Nnly5hhHPgKVF-luobK9jSUG6ZQGJlsR7jmgOP2IOuT6o_zH9U7cHz3VPdin6zbfZ",
+        note: "1 under each tyre stops the Kränzle hose jamming while circling 3 cars."
+      },
+      {
+        id: "ds-3", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Pressure Washing & Drying",
+        brand: "BigBoi", name: "BlowR Pro MKII 4-Stage Twin Motor Touchless Car Dryer",
+        model: "Twin 1600W Filtered Warm Air", sku: "BLOWRPRO MKII", qty: 1, unitPrice: 679.00, isEst: false,
+        url: "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFeomwd8bOhMO2Rpo2Vt-JkCR4MqpeA0sGpgerFHH-7to8TucU9fIBPxT696g-TojvO5X7Br-1ZMCXmujLItHvPvCPIgkd5A_sssH7MW2qC1UFqwYXorBdvnw1iihTsnoB24s5GXKgKM0NshR9P",
+        note: "Blasts water out of badges, mirrors, grilles & lug nuts with zero towel contact."
+      },
 
-        if(!shown){
-          var emp=document.createElement('div');emp.className='empty';
-          emp.innerHTML='<h3>No matching equipment found</h3><p>Try another name, brand or SKU.</p><button type="button" id="shAll" class="btn pri">Show All 36 Products</button>';
-          main.appendChild(emp);
-          document.getElementById('shAll').onclick=function(){st.q='';st.f='all';srch.value='';clrBtn.classList.remove('on');for(var i=0;i<pills.length;i++)pills[i].classList.toggle('on',pills[i].getAttribute('data-f')==='all');render();};
-          return;
-        }
-        var gr=document.createElement('section');gr.className='grand';
-        gr.innerHTML='<div class="grow"><span>Total Equipment Items</span><strong>36 items</strong></div><div class="grow"><span>Checked Equipment Value</span><strong>'+aud(chkVal)+' AUD</strong></div><div class="grow"><span>Remaining Equipment Value</span><strong>'+aud(grand-chkVal)+' AUD</strong></div><div class="grow tot"><span>Overall Equipment Total</span><span class="amt">'+aud(grand)+' AUD</span></div>';
-        main.appendChild(gr);
-      }
-
-      main.addEventListener('click',function(e){
-        var c=e.target.closest('.card');if(!c)return;
-        var id=parseInt(c.getAttribute('data-id'),10);
-        if(st.chk[id])delete st.chk[id];else st.chk[id]=true;
-        save();render();
-      });
-      srch.addEventListener('input',function(){st.q=srch.value;clrBtn.classList.toggle('on',st.q.length>0);render();});
-      clrBtn.addEventListener('click',function(){st.q='';srch.value='';clrBtn.classList.remove('on');srch.focus();render();});
-      for(var i=0;i<pills.length;i++){pills[i].addEventListener('click',function(){st.f=this.getAttribute('data-f');for(var j=0;j<pills.length;j++)pills[j].classList.toggle('on',pills[j]===this);render();});}
-      document.getElementById('rstBtn').onclick=function(){rstMod.classList.add('on');};
-      document.getElementById('cRst').onclick=function(){rstMod.classList.remove('on');};
-      document.getElementById('yRst').onclick=function(){st.chk={};save();rstMod.classList.remove('on');render();};
-      rstMod.onclick=function(e){if(e.target===rstMod)rstMod.classList.remove('on');};
-      document.getElementById('instBtn').onclick=function(){instMod.classList.add('on');};
-      document.getElementById('cInst').onclick=function(){instMod.classList.remove('on');};
-      instMod.onclick=function(e){if(e.target===instMod)instMod.classList.remove('on');};
-      window.addEventListener('storage',function(e){if(e.key===KEY){st.chk=load();render();}});
-      render();
-    })();
-  </script>
-</body>
-</html>
+      // Compounds, Pads & Inspection
+      {
+        id: "ds-4", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Compounds, Pads & Inspection",
+        brand: "SONAX", name: "PROFILINE Ultimate Cut 6+ Heavy Cutting Compound (1L)",
+        model: "Select 1L Size (Silicone-Free)", sku: "SON-02393000", qty: 1, unitPrice: 69.99, isEst: true,
+        url: "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEadtSF1NTnDFe-kutzqjzG7YXgRbZtDUCNEp818zLQwmWktrZAwbXK-Nr5p-7Yzu1vucrfT_oDxu872wDiZL3gwHAbVT-v5wE1i8yFWx2GuLdkuFwu49Oq52iVMBakPZX-BoAzN3LGebB57bfshPEn2nWq8uDGpvJUSKntXTrF9Uk0quHGHIGzbcvQ05Y8",
+        note: "Water-based, low-dust heavy cutting compound stocked at Detailing Shed. (Starts $39.99)."
+      },
+      {
+        id: "ds-5", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Compounds, Pads & Inspection",
+        brand: "Koch-Chemie", name: "Micro Cut M3.02 Finishing Polish (1L)",
+        model: "Select 1L Size (Silicone-Free)", sku: "KC-M302-1L", qty: 1, unitPrice: 64.95, isEst: true,
+        url: "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHm3b5xndE2pi2riGnvecEnoYEJXohLemJFeBWf-UU7kCYwMG3zM5Nu0gpvwdAwYSdoa0FAtPVtoO30YJ3VUlWXfRltE9wv6xpldmdPszd5jEwylJUrypwHbp9Cjnqb7pPPhVFLEa0536vjK_B26inpGG8bFgqwF1EbFbedm6IDvqVXCHtxHfRkGnfxQgQ=",
+        note: "Refines haze/swirls for deep gloss before ceramic coating. (250mL starts at $31.45)."
+      },
+      {
+        id: "ds-6", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Compounds, Pads & Inspection",
+        brand: "Buff and Shine", name: "Uro-Fiber Microfiber Cut, Polish & Finish Pads — 5\" (×6)",
+        model: "Select 5 Inch (125mm Plate)", sku: "BS-UROFIBER-5", qty: 6, unitPrice: 24.95, isEst: false,
+        url: "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGFgid0sBT23LxoCx4G-VKQocRyHnMCAh1-YlzhmdCA1vU1x4Xq8rJZDcCbVFrh7OivAwFczabJgPvwAEoYrymPl7qSgviGdLIdOydQ-36QQl3GeMEMiqHn7vjbZpzws2IMHN-8bBfGQp4w2YBJs2yELXunNMTO-JApvx1Z0eTWRWaGqmR4L84ePp4vgc6jbB1pDsk6WiWO3kw=",
+        note: "Swap to a clean pad every 1–2 panels so pads stay cool and cut evenly."
+      },
+      {
+        id: "ds-7", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Compounds, Pads & Inspection",
+        brand: "Buff and Shine", name: "Uro-Tec Yellow Polishing/Finishing Foam Pads — 5\" (×6)",
+        model: "Select 5 Inch (125mm Plate)", sku: "BS-UROTEC-YLW-5", qty: 6, unitPrice: 22.95, isEst: false,
+        url: "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF-qFySLoSkhCywT4anHE2TqjwcqFAwrH5tfLgAEkmi1Vzrp8zC4Uil8Du3JdaIyNOcmxOdPjawni6EwJujufGGfTDNe0QFTTG_7OHHTpjzIbDfJ15iktz80TSWYa0ZSc0l7sCPR1NYxzPsxIzJhgldJ7oSl_oCYL7B",
+        note: "Pair with M3.02 for final gloss pass or single-stage polishing."
+      },
+      {
+        id: "ds-8", step: 3, store: "Detailing Shed (Caringbah)", storeCls: "ds", category: "Compounds, Pads & Inspection",
+        brand: "Buff and Shine", name: "Uro-Fiber Microfiber Cut, Polish & Finish Pads — 3\" (×4)",
+        model: "Select 3 Inch (LHR75E Mini)", sku: "BS-UROFIBER-3", qty: 4, unitPrice: 19.95, isEst: true,
+        url: "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGFgid0sBT
